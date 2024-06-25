@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        main {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Flights</h1>
+        <ul>
+            <li>
+
+                {% for flight in flights %}
+                {{ flight.flight_number }} - {{ flight.destination }} ({{ flight.seats }} seats available)
+                <form action="{{ url_for('book_flight') }}" method="post">
+                    <input type="hidden" name="flight_id" value="{{ flight.id }}">
+                    <input type="submit" value="Book">
+                </form>
+                {% endfor %}
+            </li>
+
+        </ul>
+    </main>
+</body>
+
+</html>
